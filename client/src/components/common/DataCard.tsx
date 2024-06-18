@@ -11,19 +11,23 @@ interface DataCardProps {
   formula: string;
   datafile: string;
   filename: string;
-  // onDelete: (id: string) => void; // Add onDelete prop type
 }
 
 const DataCard: React.FC<DataCardProps> = ({ id, title, datatype, location, formula, datafile, filename,}) => {
   const navigate = useNavigate();
-  const downloadFile = (url: string, filename: string) => {
-    const link = document.createElement('a');
-    const modifiedUrl = `${url}?response-content-disposition=attachment;filename=${encodeURIComponent(filename)}`;
-    link.href = modifiedUrl;
-    link.setAttribute('download', filename);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const downloadFile = async (url: string, filename: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Failed to download file', error);
+    }
   };
 
   return (
