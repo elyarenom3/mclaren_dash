@@ -1,6 +1,7 @@
 import React from 'react';
 import { Place, Description, Download, ElectricCar, Delete } from '@mui/icons-material';
 import { Box, Typography, Card, CardContent, Stack, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 interface DataCardProps {
   id: string;
