@@ -29,6 +29,12 @@ const StyledTextareaAutosize = styled(TextareaAutosize)(({ theme }) => ({
 
 const Form = ({ type, register, handleSubmit, handleFileChange, formLoading, onFinishHandler, dataFile }: FormProps) => {
   const navigate = useNavigate();
+
+  const handleFormSubmit = (data: any) => {
+    const finalData = { ...data, filename: dataFile.name };
+    onFinishHandler(finalData);
+  };
+
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between">
@@ -44,7 +50,7 @@ const Form = ({ type, register, handleSubmit, handleFileChange, formLoading, onF
       <Box mt={1} borderRadius="15px" padding="30px" bgcolor='white' boxShadow={3}>
         <form
           style={{ marginTop: '2px', width: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}
-          onSubmit={handleSubmit(onFinishHandler)}
+          onSubmit={handleSubmit(handleFormSubmit)}
         >
           <FormControl>
             <FormHelperText sx={{
@@ -255,7 +261,7 @@ const Form = ({ type, register, handleSubmit, handleFileChange, formLoading, onF
                 />
               </Button>
             </Stack>
-            <Typography fontSize={14} color="black" sx={{ wordBreak: 'break-all' }} {...register('filename', { required: true })}>
+            <Typography fontSize={14} color="black" sx={{ wordBreak: 'break-all' }}>
               {dataFile?.name}
             </Typography>
           </Stack>
