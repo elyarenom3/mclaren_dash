@@ -225,9 +225,14 @@ const createData = async (req, res) => {
   try {
     const { title, description, datatype, location, formula, datafile, email, filename } = req.body;
 
-    if (!title || !description || !datatype || !location || !formula || !datafile || !email || !filename) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
+    if (!title) return res.status(400).json({ message: "Title is required" });
+    if (!description) return res.status(400).json({ message: "Description is required" });
+    if (!datatype) return res.status(400).json({ message: "Data type is required" });
+    if (!location) return res.status(400).json({ message: "Location is required" });
+    if (!formula) return res.status(400).json({ message: "Formula is required" });
+    if (!datafile) return res.status(400).json({ message: "Data file is required" });
+    if (!email) return res.status(400).json({ message: "Email is required" });
+    if (!filename) return res.status(400).json({ message: "Filename is required" });
 
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -264,6 +269,7 @@ const createData = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 
 const updateData = async (req, res) => {
