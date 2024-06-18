@@ -54,7 +54,7 @@ const Home = () => {
       <Box mt="5px" display="flex" flexWrap="wrap" gap={2} width="100%">
         <Stack
           width="100%"
-          direction={{ xs: 'row', lg: 'row' }}
+          direction={{ xs: 'column', lg: 'row' }}
           gap={1}
         >
           <RacingLineSim />
