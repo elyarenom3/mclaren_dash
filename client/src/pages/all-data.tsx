@@ -27,7 +27,7 @@ const AllData: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/data', {
+      const response = await axios.get('https://mclaren-dashboard.onrender.com/api/v1/data', {
         params: {
           title_like: filters.title,
           formula: filters.formula
@@ -41,7 +41,7 @@ const AllData: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/data/${id}`);
+      await axios.delete(`https://mclaren-dashboard.onrender.com/api/v1/data/${id}`);
       setData(data.filter((item) => item._id !== id));
     } catch (error) {
       console.error('Error deleting file', error);

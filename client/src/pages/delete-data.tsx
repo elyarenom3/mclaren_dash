@@ -11,7 +11,7 @@ const DeleteData = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/data/${id}`);
+      await axios.delete(`https://mclaren-dashboard.onrender.com/api/v1/data/${id}`);
       navigate('/data');
     } catch (error) {
       console.error('Error deleting data', error);

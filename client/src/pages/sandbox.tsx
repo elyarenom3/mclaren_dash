@@ -72,7 +72,7 @@ plt.show()`;
 
   const fetchFiles = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/data');
+      const response = await axios.get('https://mclaren-dashboard.onrender.com/api/v1/data');
       setFiles(response.data);
     } catch (error) {
       console.error('Error fetching files', error);
@@ -103,7 +103,7 @@ plt.show()`;
     if (!selectedFileId) return;
     try {
       console.log(`Fetching content for file ID: ${selectedFileId}`); 
-      const response = await axios.get(`http://localhost:8080/api/v1/data/${selectedFileId}`);
+      const response = await axios.get(`https://mclaren-dashboard.onrender.com/api/v1/data/${selectedFileId}`);
       const fileContent = response.data;
 
       const fileCode = `import pandas as pd

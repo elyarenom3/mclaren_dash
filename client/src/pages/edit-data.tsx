@@ -21,7 +21,7 @@ const EditData: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/data/${id}`);
+        const response = await axios.get(`https://mclaren-dashboard.onrender.com/api/v1/data/${id}`);
         setData(response.data);
         setDataFile({ name: response.data.filename, url: response.data.datafile }); // Ensure the dataFile state is set correctly
       } catch (error) {
@@ -53,7 +53,7 @@ const EditData: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:8080/api/v1/data/${id}`, { ...data, datafile: dataFile.url });
+      await axios.patch(`https://mclaren-dashboard.onrender.com/api/v1/data/${id}`, { ...data, datafile: dataFile.url });
       navigate('/data');
     } catch (error) {
       console.error('Error updating data', error);
