@@ -81,7 +81,7 @@ plt.show()`;
 
   const runCode = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/run', { code });
+      const response = await axios.post('https://mclaren-dash.onrender.com/run', { code });
       setOutput(response.data.output);
       setPlot(response.data.plot);
     } catch (error) {
