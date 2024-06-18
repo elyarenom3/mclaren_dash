@@ -13,6 +13,7 @@ interface DataCardProps {
 }
 
 const DataCard2: React.FC<DataCardProps> = ({ id, title, datatype, location, formula, datafile, filename, }) => {
+  const navigate = useNavigate();
   const downloadFile = async (url: string, filename: string) => {
     try {
       const response = await fetch(url);
