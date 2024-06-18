@@ -45,6 +45,7 @@ const Sandbox: React.FC = () => {
   const [plot, setPlot] = useState<string>('');
   const [files, setFiles] = useState<FileData[]>([]);
   const [selectedFileId, setSelectedFileId] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const exampleCode = `import pandas as pd
 import matplotlib.pyplot as plt
@@ -80,6 +81,7 @@ plt.show()`;
   };
 
   const runCode = async () => {
+    setLoading(true);
     try {
       const response = await axios.post('https://mclaren-dash.onrender.com/run', { code });
       setOutput(response.data.output);
@@ -87,6 +89,7 @@ plt.show()`;
     } catch (error) {
       setOutput('Error running code');
     }
+    setLoading(false);
   };
 
   const showExample = () => {
@@ -148,7 +151,7 @@ plt.show()
       <Stack direction="row" justifyContent="space-between" spacing={2} mt={3}>
         <Stack direction="row" spacing={2}>
           <CustomButton 
-            title="Run Code" 
+            title= {loading ? "Loading..." : "Run Code"} 
             handleClick={runCode} 
             backgroundColor='#f3832b'
             color='white'
