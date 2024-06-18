@@ -255,7 +255,7 @@ const Form = ({ type, register, handleSubmit, handleFileChange, formLoading, onF
                 />
               </Button>
             </Stack>
-            <Typography fontSize={14} color="black" sx={{ wordBreak: 'break-all' }}>
+            <Typography fontSize={14} color="black" sx={{ wordBreak: 'break-all' }} {...register('filename', { required: true })}>
               {dataFile?.name}
             </Typography>
           </Stack>
